@@ -34,6 +34,26 @@ export class SqlServerRegisteryService {
      * @returns {Promise<boolean>} boolean if delete was successful
      */
     static async unRegisterUserToServer(pubgId: string, serverId: string): Promise<boolean> {
+        // const sql: string = `
+        // delete
+        // from server_registery
+        // where
+        //     id =
+        //     (
+        //         select SR.id
+        //         from server_registery as SR
+        //         left join players as P
+        //         on SR.username = P.id
+        //         where fk_servers_id=(select id from servers where server_id=$1) and username=$2
+        //     )
+        // and fk_servers_id=(select id from servers where server_id=$1)`;
+        // return pool.query(sql, [serverId, pubgId]).then((res: QueryResult) => {
+        //     if(res.rowCount === 1){
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // });
         return pool.query('delete from server_registery where fk_players_id=(select id from players where pubg_id=$1) and fk_servers_id=(select id from servers where server_id=$2)', [pubgId, serverId])
             .then((res: QueryResult) => {
                 if(res.rowCount === 1){

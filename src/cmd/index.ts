@@ -15,6 +15,7 @@ export * from './server_cmds/getServerDefaults';
 export * from './server_cmds/profile';
 export * from './server_cmds/register';
 export * from './server_cmds/removeUser';
+export * from './server_cmds/role';
 export * from './server_cmds/setServerDefaults';
 export * from './server_cmds/users';
 
